@@ -22,8 +22,12 @@ export default defineConfig(
         vite: { base: basePath },
         tanstackStart: {
           server: { entry: "server" },
+          // List the home page explicitly and render the SPA shell from a distinct
+          // path. Prerendered pages are deduplicated by path, so with a "/" base
+          // (custom domain) a shell at "/" would replace index.html.
+          pages: [{ path: "/" }],
           prerender: { enabled: true, crawlLinks: true, failOnError: true },
-          spa: { enabled: true },
+          spa: { enabled: true, maskPath: "/?spa-shell" },
         },
       }
     : {
