@@ -321,7 +321,11 @@ export const SOCIALS = [
 
 /* ---------- Contact ---------- */
 
-export const CONTACT_EMAIL = "hello@hideas.ca";
+export const CONTACT_EMAIL = "events@hideas.ca";
+
+/** Web3Forms access key. Submissions are delivered to the inbox the key was created for
+ * (events@hideas.ca). Access keys are designed to be public. */
+export const WEB3FORMS_KEY = "507c60b7-5e4a-447e-80c0-430befdf66b1";
 
 /* ---------- Prepare & Integrate ---------- */
 
