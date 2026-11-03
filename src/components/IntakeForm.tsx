@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { CONTACT_EMAIL, upcomingEvents } from "@/data/hideas";
+import { sendForm } from "@/lib/send-form";
 
 const FIELDS = [
   { id: "name", label: "Full name", type: "text", auto: "name", required: true },
@@ -38,6 +39,8 @@ const TEXTAREAS = [
 
 export function IntakeForm() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const sorted = upcomingEvents();
 
   if (sent) {
@@ -56,12 +59,20 @@ export function IntakeForm() {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        const values = new FormData(e.currentTarget);
-        const lines = Array.from(values.entries()).map(([key, value]) => `${key}: ${String(value)}`);
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Hideas participation and consent form")}&body=${encodeURIComponent(lines.join("\n"))}`;
-        setSent(true);
+        const form = e.currentTarget;
+        setSending(true);
+        setError("");
+        try {
+          const email = new FormData(form).get("E-mail");
+          await sendForm("Hideas participation and consent form", form, email ? String(email) : undefined);
+          setSent(true);
+        } catch {
+          setError(`Your form couldn't be sent. Please try again, or email it to ${CONTACT_EMAIL}.`);
+        } finally {
+          setSending(false);
+        }
       }}
       className="border-2 border-ink bg-cream p-6 text-ink shadow-[10px_10px_0_var(--magenta)] sm:p-8"
     >
@@ -147,12 +158,18 @@ export function IntakeForm() {
 
       <button
         type="submit"
-        className="mt-7 w-full border-2 border-ink bg-ink px-5 py-3 font-display text-lg uppercase text-cream transition-transform hover:-translate-y-0.5"
+        disabled={sending}
+        className="mt-7 w-full border-2 border-ink bg-ink px-5 py-3 font-display text-lg uppercase text-cream transition-transform hover:-translate-y-0.5 disabled:opacity-60"
       >
-         Email my intake &amp; consent
+        {sending ? "Sending…" : "Send my intake & consent"}
       </button>
+      {error ? (
+        <p role="alert" className="mt-3 text-center text-sm text-ember">
+          {error}
+        </p>
+      ) : null}
       <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-widest text-ink/50">
-        Or e-mail it to {CONTACT_EMAIL}
+        Sent securely to the Hideas team at {CONTACT_EMAIL}
       </p>
     </form>
   );
