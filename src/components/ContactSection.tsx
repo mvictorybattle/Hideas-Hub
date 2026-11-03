@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { CONTACT_EMAIL, WHATSAPP_LINK } from "@/data/hideas";
 import { SocialLinks } from "@/components/SocialLinks";
+import { sendForm } from "@/lib/send-form";
 
 const TYPES = [
   "General question",
@@ -13,6 +14,8 @@ const TYPES = [
 
 export function ContactSection() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
@@ -55,12 +58,20 @@ export function ContactSection() {
         </div>
       ) : (
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            const values = new FormData(e.currentTarget);
-            const lines = Array.from(values.entries()).map(([key, value]) => `${key}: ${String(value)}`);
-            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Hideas enquiry")}&body=${encodeURIComponent(lines.join("\n"))}`;
-            setSent(true);
+            const form = e.currentTarget;
+            setSending(true);
+            setError("");
+            try {
+              const email = new FormData(form).get("E-mail");
+              await sendForm("Hideas enquiry", form, email ? String(email) : undefined);
+              setSent(true);
+            } catch {
+              setError(`Your message couldn't be sent. Please try again, or email ${CONTACT_EMAIL}.`);
+            } finally {
+              setSending(false);
+            }
           }}
           className="h-fit border-2 border-ink bg-cream p-6 text-ink shadow-[10px_10px_0_var(--magenta)] sm:p-8"
         >
@@ -123,10 +134,16 @@ export function ContactSection() {
 
           <button
             type="submit"
-            className="mt-6 w-full border-2 border-ink bg-ink px-5 py-3 font-display text-lg uppercase text-cream transition-transform hover:-translate-y-0.5"
+            disabled={sending}
+            className="mt-6 w-full border-2 border-ink bg-ink px-5 py-3 font-display text-lg uppercase text-cream transition-transform hover:-translate-y-0.5 disabled:opacity-60"
           >
-             Email enquiry
+            {sending ? "Sending…" : "Send enquiry"}
           </button>
+          {error ? (
+            <p role="alert" className="mt-3 text-center text-sm text-ember">
+              {error}
+            </p>
+          ) : null}
         </form>
       )}
     </div>
