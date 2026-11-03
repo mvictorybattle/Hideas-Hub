@@ -35,7 +35,7 @@ export function ContactSection() {
                 rel="noreferrer"
                 className="font-mono text-sm hover:text-marigold"
               >
-                 WhatsApp (647) 458-1685
+                 WhatsApp us
               </a>
             </li>
             <li className="font-mono text-sm text-cream/60">
