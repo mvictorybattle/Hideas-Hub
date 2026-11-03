@@ -316,7 +316,7 @@ export const SOCIALS = [
   { label: "Instagram", href: "https://www.instagram.com/hideas.ca/", handle: "@hideas.ca" },
   { label: "YouTube", href: "https://www.youtube.com/@hideasevents", handle: "Hideas Events" },
   { label: "Discord", href: DISCORD_LINK, handle: "Join the circle" },
-  { label: "WhatsApp", href: WHATSAPP_LINK, handle: "(647) 458-1685" },
+  { label: "WhatsApp", href: WHATSAPP_LINK, handle: "Message us" },
 ] as const;
 
 /* ---------- Contact ---------- */
