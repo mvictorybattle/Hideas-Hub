@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { money, useCart } from "@/lib/cart";
 import { CONTACT_EMAIL, POLICY, WHATSAPP_LINK } from "@/data/hideas";
+import { sendForm } from "@/lib/send-form";
 
 
 export const Route = createFileRoute("/checkout")({
@@ -31,6 +32,8 @@ const COUPONS: Record<string, number> = {};
 function CheckoutPage() {
   const { items, total, setQty, remove, clear } = useCart();
   const [placed, setPlaced] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [coupon, setCoupon] = useState("");
   const [appliedCode, setAppliedCode] = useState("");
   const [couponMessage, setCouponMessage] = useState("");
@@ -41,13 +44,12 @@ function CheckoutPage() {
     return (
       <main className="grain min-h-screen bg-ink px-5 py-24 text-cream">
         <div className="mx-auto max-w-xl border-2 border-cream/20 bg-ink-soft p-8 text-center">
-          <h1 className="poster text-5xl text-marigold">Reservation request prepared</h1>
+          <h1 className="poster text-5xl text-marigold">Reservation request sent</h1>
           <p className="mt-5 text-cream/80">
-            Your email app should have opened with your reservation — press send to reach us.
+            We&rsquo;ve received your reservation and will reply by email within 48 hours.
             Your seat is confirmed only after a facilitator reviews your intake.
-            <a href={`mailto:${CONTACT_EMAIL}`} className="mt-4 block text-marigold underline">Email us to confirm</a>
           </p>
-          <p className="mt-4 text-sm text-cream/70">Email app didn't open? Send us your reservation on WhatsApp instead.</p>
+          <p className="mt-4 text-sm text-cream/70">Questions in the meantime? Message us on WhatsApp.</p>
           <div className="mt-4 flex flex-wrap justify-center gap-4">
             <a
               href={WHATSAPP_LINK}
@@ -150,29 +152,38 @@ function CheckoutPage() {
             </ul>
 
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                const fd = new FormData(e.currentTarget);
+                const form = e.currentTarget;
                 const titles = items.map((it) => it.name.replace(/^(Seat|Donation) — /, ""));
                 const subject = `Hideas reservation request — ${[...new Set(titles)].join(", ")}`;
-                const lines = [
-                  `Full name: ${fd.get("name") ?? ""}`,
-                  `E-mail: ${fd.get("email") ?? ""}`,
-                  `Note: ${fd.get("note") || "—"}`,
-                  "",
-                  "Items:",
-                  ...items.map((it) => `- ${it.name} × ${it.qty} @ ${money(it.price)} = ${money(it.price * it.qty)}`),
-                  "",
-                  ...(discount > 0 ? [`Coupon ${appliedCode}: −${money(discount)}`] : []),
-                  `Total: ${money(total - discount)}`,
-                ];
-                window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
-                clear();
-                setPlaced(true);
+                setSending(true);
+                setError("");
+                try {
+                  const email = new FormData(form).get("email");
+                  await sendForm(subject, form, email ? String(email) : undefined);
+                  clear();
+                  setPlaced(true);
+                } catch {
+                  setError(`Your reservation couldn't be sent. Please try again, or email ${CONTACT_EMAIL}.`);
+                } finally {
+                  setSending(false);
+                }
               }}
               className="h-fit border-2 border-ink bg-paper p-6 text-ink shadow-[8px_8px_0_var(--marigold)]"
             >
               <h2 className="font-display text-2xl uppercase">Ceremony reservation</h2>
+              <input
+                type="hidden"
+                name="Items"
+                value={items
+                  .map((it) => `${it.name} × ${it.qty} @ ${money(it.price)} = ${money(it.price * it.qty)}`)
+                  .join("\n")}
+              />
+              {discount > 0 ? (
+                <input type="hidden" name="Coupon" value={`${appliedCode}: −${money(discount)}`} />
+              ) : null}
+              <input type="hidden" name="Total" value={money(total - discount)} />
               <div className="mt-5 border-2 border-ink bg-cream p-4">
                 <label className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/70" htmlFor="coupon">
                   Coupon code
@@ -237,10 +248,16 @@ function CheckoutPage() {
 
               <button
                 type="submit"
-                className="mt-6 w-full border-2 border-ink bg-ink px-5 py-3 font-display text-lg uppercase text-cream transition-transform hover:-translate-y-0.5"
+                disabled={sending}
+                className="mt-6 w-full border-2 border-ink bg-ink px-5 py-3 font-display text-lg uppercase text-cream transition-transform hover:-translate-y-0.5 disabled:opacity-60"
               >
-                Prepare reservation
+                {sending ? "Sending…" : "Send reservation"}
               </button>
+              {error ? (
+                <p role="alert" className="mt-3 text-center text-sm text-ember">
+                  {error}
+                </p>
+              ) : null}
               <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-widest text-ink/50">
                 We confirm payment by e-mail
               </p>
