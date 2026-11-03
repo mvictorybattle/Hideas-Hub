@@ -1,34 +1,10 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
+import logo from "@/assets/h!logo.png";
+
 const KEY = "hideas-intro-seen";
 const DURATION = 4600;
-
-function Ufo() {
-  return (
-    <svg viewBox="0 0 240 120" className="w-full" aria-hidden="true">
-      <ellipse cx="120" cy="74" rx="112" ry="30" fill="var(--cream)" stroke="var(--ink)" strokeWidth="6" />
-      <path
-        d="M62 58a58 42 0 0 1 116 0Z"
-        fill="var(--cream)"
-        stroke="var(--ink)"
-        strokeWidth="6"
-      />
-      <ellipse cx="120" cy="58" rx="58" ry="14" fill="var(--sky)" opacity="0.5" />
-      {[36, 78, 162, 204].map((x, i) => (
-        <ellipse
-          key={x}
-          cx={x}
-          cy={i === 1 || i === 2 ? 66 : 76}
-          rx="13"
-          ry="6"
-          fill="var(--ink)"
-        />
-      ))}
-      <ellipse cx="120" cy="82" rx="26" ry="10" fill="var(--ink)" />
-    </svg>
-  );
-}
 
 export function IntroBeam() {
   const [state, setState] = useState<"idle" | "playing">("idle");
@@ -99,9 +75,18 @@ export function IntroBeam() {
         </div>
       </div>
 
-      {/* the ship */}
-      <div className="absolute left-1/2 top-[6%] w-[min(360px,60vw)] -translate-x-1/2 [animation:intro-ship-in_1s_ease-out_both,intro-ship-hover_2s_1s_ease-in-out_2,intro-ship-out_0.9s_3.1s_ease-in_forwards]">
-        <Ufo />
+      {/* the ship: the H! logo beams the circle in */}
+      <div className="absolute left-1/2 top-[4%] w-[min(190px,40vw)] -translate-x-1/2 [animation:intro-ship-in_1s_ease-out_both,intro-ship-hover_2s_1s_ease-in-out_2,intro-ship-out_0.9s_3.1s_ease-in_forwards]">
+        <img
+          src={logo}
+          alt=""
+          aria-hidden="true"
+          className="w-full rounded-full"
+          style={{
+            boxShadow:
+              "0 0 0 4px var(--cream), 0 0 40px color-mix(in oklab, var(--jade) 60%, transparent)",
+          }}
+        />
       </div>
 
       <button
