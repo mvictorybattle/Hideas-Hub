@@ -350,3 +350,63 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   .wa-float { animation: none; }
 }
+/* Hero kaleidoscope: rotation and colour blending only touch transform and opacity. */
+.kaleidoscope {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.kaleidoscope-calm {
+  --spin: 240s;
+  --blend: 24s;
+  --stroke: 3;
+  opacity: 0.9;
+}
+.kaleidoscope-vivid {
+  --spin: 70s;
+  --blend: 8s;
+  --stroke: 3.5;
+}
+.kaleidoscope-disc {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  animation: kaleidoscope-spin var(--spin) linear infinite;
+}
+.kaleidoscope-disc:nth-child(2) {
+  animation-direction: reverse;
+  animation-duration: calc(var(--spin) * 0.75);
+}
+.kaleidoscope-disc:nth-child(3) {
+  animation-duration: calc(var(--spin) * 1.3);
+}
+.kaleidoscope-disc svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill-rule: evenodd;
+  stroke-width: var(--stroke);
+}
+.kaleidoscope-disc svg.kaleidoscope-blend {
+  opacity: 0;
+  will-change: opacity;
+  animation: kaleidoscope-blend var(--blend) ease-in-out infinite alternate;
+}
+@keyframes kaleidoscope-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes kaleidoscope-blend {
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kaleidoscope-disc,
+  .kaleidoscope-disc svg.kaleidoscope-blend {
+    animation: none;
+  }
+}
