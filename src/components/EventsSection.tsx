@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { EVENTS, WHATSAPP_LINK, upcomingEvents } from "@/data/hideas";
+import { EVENTS, upcomingEvents } from "@/data/hideas";
+import { EventAreas } from "@/components/EventAreas";
 import ceremonyImg from "@/assets/ceremony.webp";
 import { parsePrice, useCart } from "@/lib/cart";
 import { PriceTag } from "@/components/PriceTag";
@@ -94,23 +95,7 @@ export function EventsSection() {
   const sorted = upcomingEvents();
   const next = sorted[0];
   const rest = sorted.slice(1);
-  if (!next)
-    return (
-      <div className="border-2 border-ink bg-cream p-7 text-ink shadow-[9px_9px_0_var(--magenta)]">
-        <h3 className="poster text-3xl sm:text-4xl">New circles coming soon</h3>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/80">
-          No upcoming dates are posted right now. Message us on WhatsApp to hear about the next ceremony first.
-        </p>
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-5 inline-block border-2 border-ink bg-ink px-6 py-3 font-display text-lg uppercase text-cream shadow-[6px_6px_0_var(--jade)] transition-transform hover:-translate-y-1"
-        >
-          Message us on WhatsApp
-        </a>
-      </div>
-    );
+  if (!next) return <EventAreas />;
   const n = fmt(next.date);
 
   return (
