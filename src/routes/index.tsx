@@ -17,9 +17,14 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { CONTACT_EMAIL } from "@/data/hideas";
 
 
-import heroCollage from "@/assets/hero-collage.webp";
-import ceremonyImg from "@/assets/ceremony.webp";
-import podcastImg from "@/assets/podcast.webp";
+import { Kaleidoscope } from "@/components/Kaleidoscope";
+import heroBanner from "@/assets/banner-forest.webp";
+import heroBannerPhone from "@/assets/banner-forest-phone.webp";
+import goldenFrequencyWide from "@/assets/golden-frequency-wide.webp";
+import goldenFrequencyPhone from "@/assets/golden-frequency-phone.webp";
+import privateCeremonyImg from "@/assets/private-ceremony.webp";
+import talkMedicineBanner from "@/assets/talk-medicine-banner.webp";
+import logo from "@/assets/h!logo.png";
 
 
 export const Route = createFileRoute("/")({
@@ -57,6 +62,19 @@ const NAV = [
   { id: "gallery", label: "Gallery" },
   { id: "about", label: "About" },
   { id: "connect", label: "Connect" },
+];
+
+const CIRCLES = [
+  {
+    name: "Nature Loves Courage",
+    body: "A traditional ceremony, held outdoors or in a carefully chosen space. Opened with smudging and carried by a soundscape of beautiful music, it's an invitation to slow down and let the experience unfold naturally.",
+    href: "#nature-loves-courage",
+  },
+  {
+    name: "Golden Frequency",
+    body: "A modern, sound-led ceremony. Each session is built around chosen frequencies that work hand in hand with the experience, and many guests describe vivid geometric patterns and a deep sense of focus.",
+    href: "#golden-frequency",
+  },
 ];
 
 
@@ -123,9 +141,17 @@ function Marquee({ words, tone }: { words: string[]; tone: "marigold" | "magenta
   );
 }
 
-function SectionLabel({ n, children }: { n: string; children: React.ReactNode }) {
+function SectionLabel({
+  n,
+  children,
+  tone = "text-marigold",
+}: {
+  n: string;
+  children: React.ReactNode;
+  tone?: string;
+}) {
   return (
-    <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-marigold">
+    <p className={`font-mono text-[11px] uppercase tracking-[0.32em] ${tone}`}>
       <span className="mr-3 inline-block bg-magenta px-2 py-0.5 text-cream">{n}</span>
       {children}
     </p>
@@ -179,27 +205,42 @@ function Home() {
       </header>
 
 
+      {/* BANNER */}
+      <picture>
+        <source media="(max-width: 640px)" srcSet={heroBannerPhone} width={960} height={960} />
+        <img
+          src={heroBanner}
+          alt="Guests in headphones meditating in a forest clearing beneath a swirling, luminous sky"
+          width={2160}
+          height={864}
+          fetchPriority="high"
+          decoding="async"
+          className="block w-full border-b-2 border-ink"
+        />
+      </picture>
+
       {/* HERO */}
       <section id="top" className="relative px-5 pt-10 pb-16 sm:px-8 sm:pt-16">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative">
-              <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-jade">
-                Vol. 04 — Gratitude & Intention
-              </span>
-              <h1 className="poster mt-5 text-5xl leading-[0.95] sm:text-7xl lg:text-8xl">
+              <h1 className="poster text-5xl leading-[0.95] sm:text-7xl lg:text-8xl">
                 <span className="block text-cream">Hideas</span>
-                <span className="outline-type block">Silent disco</span>
-                <span className="block text-magenta">Ceremonies</span>
+                <span className="outline-type block">Socials and</span>
+                <span className="block text-magenta">Ceremony</span>
               </h1>
               <p className="mt-7 max-w-md text-lg leading-relaxed text-cream/80">
-                We host meditation, breathwork, and cacao ceremonies in a silent-disco
-                format — guided experiences with music through individual headphones.
-                Our only offering is hosting these ceremonies; we do not sell physical products.
+                Hideas creates intimate gatherings for people who want more from their time.
+                Alongside our curated social events, we host small, private ceremonies centred
+                on the safe and thoughtful use of plant medicine. We don&apos;t sell plant
+                medicine. We design the experience, and we work only with experienced
+                practitioners who operate properly and within the law. Our guests often describe
+                leaving lighter and clearer, with a renewed sense of purpose and a quiet release
+                of patterns that no longer serve them.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
-                  href="#calendar"
+                  href="#circles"
                   className="border-2 border-ink bg-ember px-6 py-3 font-display text-lg uppercase text-cream shadow-[6px_6px_0_var(--marigold)] transition-transform hover:-translate-y-1"
                 >
                   Join a circle
@@ -217,25 +258,39 @@ function Home() {
             </div>
 
             <div className="relative">
-              <div className="wobble absolute -left-4 -top-6 z-20 hidden rotate-[-8deg] border-2 border-ink bg-jade px-4 py-2 font-display text-sm uppercase text-cream sm:block">
-                Headphones on, together
-              </div>
-              <div className="sticker relative rotate-[1.5deg]">
+              <div className="relative mx-auto aspect-square w-full max-w-xl">
+                <Kaleidoscope />
                 <img
-                  src={heroCollage}
-                  alt="Paper collage of cacao pods, marigolds and a woman raising a ceremonial bowl"
-                  width={1280}
-                  height={960}
-                  fetchPriority="high"
-                  decoding="async"
-                  className="w-full object-cover"
+                  src={logo}
+                  alt="Hideas logo"
+                  width={400}
+                  height={400}
+                  className="absolute left-1/2 top-1/2 w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  style={{ boxShadow: "0 0 0 4px var(--cream), 0 0 14px 6px var(--ink)" }}
                 />
-
               </div>
-              <div className="tape left-8 -top-3 rotate-[-6deg]" aria-hidden="true" />
-              <div className="tape right-10 -bottom-3 rotate-[5deg]" aria-hidden="true" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CIRCLES */}
+      <section id="circles" className="relative scroll-mt-24 px-5 pb-20 sm:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
+          {CIRCLES.map((c, i) => (
+            <Reveal key={c.name} delay={i * 120} className="flex">
+              <article className="flex w-full flex-col border-2 border-cream/25 bg-ink-soft p-8 sm:p-10">
+                <h2 className="poster text-4xl text-cream sm:text-5xl">{c.name}</h2>
+                <p className="mt-5 flex-1 text-lg leading-relaxed text-cream/80">{c.body}</p>
+                <a
+                  href={c.href}
+                  className="mt-8 self-start border-2 border-ink bg-ember px-6 py-3 font-display text-lg uppercase text-cream shadow-[6px_6px_0_var(--marigold)] transition-transform hover:-translate-y-1"
+                >
+                  Join a circle
+                </a>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -248,44 +303,45 @@ function Home() {
       <section id="ceremony" className="torn-top relative -mt-1 bg-cream px-5 py-20 text-ink sm:px-8 sm:py-28">
         <div className="mx-auto max-w-7xl">
           <Reveal>
-            <SectionLabel n="01">Silent Disco Ceremony</SectionLabel>
-            <h2 className="poster mt-5 max-w-[14ch] text-6xl sm:text-8xl">
-              Headphones on, sitting comfortably. <span className="text-ember">The journey is about to begin.</span>
-            </h2>
+            <figure className="relative overflow-hidden border-2 border-ink shadow-[9px_9px_0_var(--ink)]">
+              <picture>
+                <source media="(max-width: 640px)" srcSet={goldenFrequencyPhone} width={1000} height={750} />
+                <img
+                  src={goldenFrequencyWide}
+                  alt="Guests in glowing headphones lying on cushions in a log cabin beneath a painted, geometric ceiling"
+                  width={1792}
+                  height={1008}
+                  loading="lazy"
+                  className="block w-full"
+                />
+              </picture>
+              <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/60 to-transparent" aria-hidden="true" />
+              <h2 className="poster absolute inset-x-0 top-0 p-4 text-center text-2xl text-cream sm:p-8 sm:text-5xl lg:p-10 lg:text-7xl">
+                Headphones on, sitting comfortably. <span className="text-marigold">The journey is about to begin.</span>
+              </h2>
+            </figure>
           </Reveal>
 
-          <div className="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-            <Reveal className="relative">
-              <div className="sticker rotate-[-2deg]">
-                <img
-                  src={ceremonyImg}
-                  alt="Overhead view of hands holding cacao bowls around candles on a bright woven blanket"
-                  width={1024}
-                  height={1280}
-                  loading="lazy"
-                  className="w-full object-cover"
-                />
-              </div>
-              <div className="tape -top-3 left-1/3 rotate-[3deg]" aria-hidden="true" />
-            </Reveal>
-
+          <div className="mt-14">
             <Reveal delay={120}>
-              <p className="max-w-xl text-xl leading-relaxed text-ink/80">
-                We begin with gratitude and a clear intention. With headphones on,
-                guided meditation, breathwork, cacao, and music create space to slow down
-                and reconnect. Each circle is hosted by our facilitators.
+              <p className="mx-auto max-w-3xl text-xl leading-relaxed text-ink/80">
+                Set and setting are everything. Before the journey begins, every guest is
+                settled in comfortably and knows exactly what to expect. We walk you through
+                each step, from finding a headphone volume that feels just right for your
+                intention to knowing who is there to support you. Nothing is rushed, and
+                nothing is left to chance, so you can let go and be fully present.
               </p>
 
-              <div className="mt-10 space-y-4">
+              <div className="mt-10 grid gap-5 lg:grid-cols-2">
                 {[
-                  { k: "Intention Setting", v: "Before we begin, we explain the session, introduce the headphones, and set an intention. A simple guided breathing pattern helps everyone settle." },
-                  { k: "Ceremony", v: "Guided meditation, breathwork, and cacao in a silent-disco format, with music through your headphones and facilitators holding the room." },
-                  { k: "Notebook", v: "After the final journey, when you feel you have touched down, take your pen and paper and begin writing or drawing what wants to come through." },
-                  { k: "Integration Circle", v: "Share your journey with your fellow travellers. Speaking it aloud can help you understand, release, and integrate the experience." },
+                  { k: "Intention Setting", v: "Every meaningful journey starts with a clear intention. Before the ceremony begins, we take a quiet moment for you to name what you'd like to bring into your journey, whether that's clarity, healing, or simply letting go. Then we turn to the breath. Not deep or forced, just steady and aware. With each focused breath, your intention settles a little deeper, gently carrying you into the ceremony." },
+                  { k: "Ceremony", v: "This is the heart of it all. A single ceremony holds several journeys, often three, four, five or more in one practice. With your intention set and your breath steady, there's nothing left to do but let go. Experienced sitters are with you throughout, holding space and looking after you, so you can drift into the experience completely. This is where the real depth of the practice unfolds." },
+                  { k: "Notebook", v: "As you return from the journey, insights often arrive with remarkable clarity. That's why we invite you to bring a notebook. Many guests reach for theirs straight away, capturing what they experienced, what it meant to them, and the new ways of thinking it opened up. It's a little like writing down a dream before it fades, except these reflections tend to stay vivid, becoming something you can return to long after the ceremony ends." },
+                  { k: "Integration Circle", v: "Once you've had time to write or simply sit quietly with your experience, you rejoin the group in the same circle where the ceremony began, only now everyone has returned to the same shared reality. This is a time to share, to listen, and to draw out the deeper meaning of each journey together. Something special happens here. Individual experiences weave into one another, and the circle becomes a force of one." },
                 ].map((s, i) => (
                   <div
                     key={s.k}
-                    className="flex gap-5 border-2 border-ink bg-paper p-5 shadow-[5px_5px_0_var(--ink)]"
+                    className="flex flex-col gap-3 border-2 border-ink bg-paper p-5 shadow-[5px_5px_0_var(--ink)]"
                     style={{ transform: `rotate(${i % 2 ? 0.5 : -0.5}deg)` }}
                   >
                     <span className="font-display text-3xl uppercase text-ember">{s.k}</span>
@@ -406,10 +462,10 @@ function Home() {
             <Reveal delay={100} className="relative">
               <div className="sticker rotate-[2.5deg]">
                 <img
-                  src={ceremonyImg}
-                  alt="A private ceremony setting with cacao, candles, and blankets"
-                  width={1024}
-                  height={768}
+                  src={privateCeremonyImg}
+                  alt="A guest resting on a daybed in headphones while a sitter watches over them in a colourful room"
+                  width={1280}
+                  height={720}
                   loading="lazy"
                   className="w-full object-cover"
                 />
@@ -431,28 +487,33 @@ function Home() {
         className="torn-both relative bg-marigold px-5 py-24 text-ink sm:px-8 sm:py-32"
       >
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-            <Reveal className="relative">
-              <SectionLabel n="04">Hideas Episodes</SectionLabel>
-              <h2 className="poster mt-5 text-6xl sm:text-7xl">
-                Talk
-                <br />
-                Medicine
+          <Reveal>
+            <SectionLabel n="04" tone="text-ink">Hideas Episodes</SectionLabel>
+            <div className="relative mt-6 overflow-hidden border-2 border-ink shadow-[9px_9px_0_var(--ink)]">
+              <img
+                src={talkMedicineBanner}
+                alt="Collage of figures from psychedelic history including Terence McKenna and Timothy Leary"
+                width={1680}
+                height={945}
+                loading="lazy"
+                className="block w-full"
+              />
+              <h2 className="poster absolute bottom-[29%] left-[61%] right-[3.5%] top-[25%] flex items-center justify-center text-center text-[clamp(1.4rem,7vw,6rem)] leading-[0.95] text-ink">
+                <span>
+                  Talk
+                  <br />
+                  Medicine
+                </span>
               </h2>
-              <p className="mt-6 max-w-sm text-lg leading-relaxed text-ink/75">
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+            <Reveal className="relative">
+              <p className="max-w-sm text-lg leading-relaxed text-ink/75">
                  Useful information, the history of psychedelic medicine, and ceremony
                  playlists gathered under one roof.
               </p>
-              <div className="sticker mt-9 rotate-[-2.5deg]">
-                <img
-                  src={podcastImg}
-                  alt="Scrapbook-style photo of a vintage microphone, notebooks and pressed flowers"
-                  width={1024}
-                  height={1024}
-                  loading="lazy"
-                  className="w-full object-cover"
-                />
-              </div>
             </Reveal>
 
             <Reveal delay={120}>
