@@ -310,12 +310,12 @@ export const FACILITATORS: Facilitator[] = [
 
 export const WHATSAPP_NUMBER = "16474581685";
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
-export const DISCORD_LINK = "https://discord.gg/hideas";
+export const SPOTIFY_LINK = "https://open.spotify.com/user/31pd5km4mv3x55dtpyhzunmd3wu4";
 
 export const SOCIALS = [
   { label: "Instagram", href: "https://www.instagram.com/hideas.ca/", handle: "@hideas.ca" },
   { label: "YouTube", href: "https://www.youtube.com/@hideasevents", handle: "Hideas Events" },
-  { label: "Discord", href: DISCORD_LINK, handle: "Join the circle" },
+  { label: "Spotify", href: SPOTIFY_LINK, handle: "Hideas playlists" },
   { label: "WhatsApp", href: WHATSAPP_LINK, handle: "Message us" },
 ] as const;
 
@@ -343,7 +343,7 @@ export const PREPARE_STEPS: { k: string; title: string; body: string }[] = [
   {
     k: "The day of",
     title: "Arrive unhurried",
-    body: "Come fasted 3–4 hours before the circle unless we've told you otherwise. Leave 30 minutes of buffer so you're not walking in from traffic.",
+    body: "Come fasted 3–4 hours before the circle unless we've told you otherwise. Plan to arrive about 20 minutes early so you can settle in before we begin. Afterwards, give yourself another 20 to 30 minutes to rest and gather yourself before heading home.",
   },
   {
     k: "Bring",
@@ -393,7 +393,7 @@ export const SAFETY_PROMISE: string[] = [
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "What does Hideas offer?",
-    a: "Hideas only hosts meditation, breathwork, and cacao ceremonies in a silent-disco format. Cacao is a food; no physical products, cartridges, or other substances are sold on this website.",
+    a: "Hideas offers unique ceremonies and curated events, including Nature Loves Courage and Golden Frequency, both original creations of founder Victory Battle. We also produce ceremonies for guest practitioners and for the Santo Daime church.",
   },
   {
     q: "I've never done anything like this. Is that okay?",
@@ -417,7 +417,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Can I drive home?",
-    a: "No. Arrange a ride, a lift or a place to stay. This is a condition of attending.",
+    a: "No. Please arrange a ride home with a friend, Lyft, or a car service. This is a condition of attending.",
   },
   {
     q: "Can I come with a friend?",
