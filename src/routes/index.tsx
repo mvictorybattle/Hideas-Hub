@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
-import { CraftGallery } from "@/components/CraftGallery";
 import { PodcastSection } from "@/components/PodcastSection";
 import { IntroBeam } from "@/components/IntroBeam";
 import { CartButton } from "@/components/CartDrawer";
@@ -17,14 +16,14 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { CONTACT_EMAIL } from "@/data/hideas";
 
 
-import { Kaleidoscope } from "@/components/Kaleidoscope";
+import { CircleCards } from "@/components/CircleCards";
+import { SpotifySection } from "@/components/SpotifySection";
 import heroBanner from "@/assets/banner-forest.webp";
 import heroBannerPhone from "@/assets/banner-forest-phone.webp";
 import goldenFrequencyWide from "@/assets/golden-frequency-wide.webp";
 import goldenFrequencyPhone from "@/assets/golden-frequency-phone.webp";
 import privateCeremonyImg from "@/assets/private-ceremony.webp";
 import talkMedicineBanner from "@/assets/talk-medicine-banner.webp";
-import logo from "@/assets/h!logo.png";
 
 
 export const Route = createFileRoute("/")({
@@ -59,23 +58,11 @@ const NAV = [
   { id: "ceremony", label: "Ceremony" },
   { id: "calendar", label: "Events" },
   { id: "podcast", label: "Podcast" },
-  { id: "gallery", label: "Gallery" },
+  { id: "spotify", label: "Spotify" },
   { id: "about", label: "About" },
   { id: "connect", label: "Connect" },
 ];
 
-const CIRCLES = [
-  {
-    name: "Nature Loves Courage",
-    body: "A traditional ceremony, held outdoors or in a carefully chosen space. Opened with smudging and carried by a soundscape of beautiful music, it's an invitation to slow down and let the experience unfold naturally.",
-    href: "#nature-loves-courage",
-  },
-  {
-    name: "Golden Frequency",
-    body: "A modern, sound-led ceremony. Each session is built around chosen frequencies that work hand in hand with the experience, and many guests describe vivid geometric patterns and a deep sense of focus.",
-    href: "#golden-frequency",
-  },
-];
 
 
 
@@ -222,14 +209,20 @@ function Home() {
       {/* HERO */}
       <section id="top" className="relative px-5 pt-10 pb-16 sm:px-8 sm:pt-16">
         <div className="mx-auto max-w-7xl">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="max-w-3xl">
             <div className="relative">
-              <h1 className="poster text-5xl leading-[0.95] sm:text-7xl lg:text-8xl">
-                <span className="block text-cream">Hideas</span>
-                <span className="outline-type block">Socials and</span>
-                <span className="block text-magenta">Ceremony</span>
+              {/* Matches the H!DEAS wordmark in the menu bar. The subheading is sized in em so it
+                  always spans the same width as H!DEAS (Caveat at 0.3325em matches tightly tracked Anton). */}
+              <h1 className="inline-block text-[clamp(4.5rem,26vw,10rem)] text-cream">
+                <span className="sr-only">Hideas</span>
+                <span aria-hidden="true" className="block font-display uppercase leading-[0.9] tracking-tight">
+                  H!DEAS
+                </span>
+                <span className="mt-[0.06em] block whitespace-nowrap font-script text-[0.3325em] leading-none text-marigold">
+                  Socials and Ceremony
+                </span>
               </h1>
-              <p className="mt-7 max-w-md text-lg leading-relaxed text-cream/80">
+              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/80">
                 Hideas creates intimate gatherings for people who want more from their time.
                 Alongside our curated social events, we host small, private ceremonies centred
                 on the safe and thoughtful use of plant medicine. We don&apos;t sell plant
@@ -256,47 +249,27 @@ function Home() {
                 come as you are, leave lighter ✦
               </p>
             </div>
-
-            <div className="relative">
-              <div className="relative mx-auto aspect-square w-full max-w-xl">
-                <Kaleidoscope />
-                <img
-                  src={logo}
-                  alt="Hideas logo"
-                  width={400}
-                  height={400}
-                  className="absolute left-1/2 top-1/2 w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  style={{ boxShadow: "0 0 0 4px var(--cream), 0 0 14px 6px var(--ink)" }}
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* CIRCLES */}
       <section id="circles" className="relative scroll-mt-24 px-5 pb-20 sm:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
-          {CIRCLES.map((c, i) => (
-            <Reveal key={c.name} delay={i * 120} className="flex">
-              <article className="flex w-full flex-col border-2 border-cream/25 bg-ink-soft p-8 sm:p-10">
-                <h2 className="poster text-4xl text-cream sm:text-5xl">{c.name}</h2>
-                <p className="mt-5 flex-1 text-lg leading-relaxed text-cream/80">{c.body}</p>
-                <a
-                  href={c.href}
-                  className="mt-8 self-start border-2 border-ink bg-ember px-6 py-3 font-display text-lg uppercase text-cream shadow-[6px_6px_0_var(--marigold)] transition-transform hover:-translate-y-1"
-                >
-                  Join a circle
-                </a>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <CircleCards />
+        </Reveal>
       </section>
 
       <Marquee
         tone="marigold"
-        words={["Socials + Ceremonies", "Nature Loves Courage", "Meditation + Breathwork + Cacao"]}
+        words={[
+          "Socials and Ceremony",
+          "Nature Loves Courage",
+          "Golden Frequency",
+          "Token of Gratitude",
+          "Private Ceremony",
+          "Hideas.ca",
+        ]}
       />
 
       {/* CEREMONY */}
@@ -440,9 +413,10 @@ function Home() {
                 <span className="text-marigold">made for you.</span>
               </h2>
               <p className="mt-7 max-w-lg text-xl leading-relaxed text-cream/85">
-                Book a private silent-disco meditation, breathwork, and cacao ceremony for yourself, as a couple, or with people you trust.
-                We shape the pace, setting, preparation, and integration around your group,
-                then hold the room from arrival through landing.
+                We bring the ceremony to you. Whether it&apos;s just for you, for you and your
+                partner, or for a small group you trust, every private ceremony is shaped around
+                your intention and your space. We currently offer private ceremonies in Vancouver
+                and throughout Central BC.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 {["Private", "Couples", "Small groups", "Vancouver", "Central BC"].map((t) => (
@@ -454,7 +428,7 @@ function Home() {
                   </span>
                 ))}
               </div>
-              <a href="#connect" className="mt-9 inline-block border-2 border-ink bg-marigold px-6 py-3 font-display text-lg uppercase text-ink shadow-[6px_6px_0_var(--magenta)] transition-transform hover:-translate-y-1">
+              <a href="#book-private" className="mt-9 inline-block border-2 border-ink bg-marigold px-6 py-3 font-display text-lg uppercase text-ink shadow-[6px_6px_0_var(--magenta)] transition-transform hover:-translate-y-1">
                 Book a private sitting
               </a>
             </Reveal>
@@ -498,7 +472,7 @@ function Home() {
                 loading="lazy"
                 className="block w-full"
               />
-              <h2 className="poster absolute bottom-[29%] left-[61%] right-[3.5%] top-[25%] flex items-center justify-center text-center text-[clamp(1.4rem,7vw,6rem)] leading-[0.95] text-ink">
+              <h2 className="talk-medicine-title absolute bottom-[29%] left-[61%] right-[3.5%] top-[25%] flex items-center justify-center text-center font-talk text-[clamp(1.9rem,8.75vw,7.8rem)] leading-[0.92] text-ink">
                 <span>
                   Talk
                   <br />
@@ -523,25 +497,25 @@ function Home() {
         </div>
       </section>
 
-      {/* GALLERY */}
-      <section id="gallery" className="relative bg-ink-soft px-5 py-20 sm:px-8 sm:py-28">
+      {/* SPOTIFY */}
+      <section id="spotify" className="relative bg-ink-soft px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
-                <SectionLabel n="05">Inside the Circle</SectionLabel>
+                <SectionLabel n="05">Hideas Playlists</SectionLabel>
                 <h2 className="poster mt-5 text-6xl text-cream sm:text-8xl">
-                  The <span className="text-jade">Gallery</span>
+                  <span className="text-jade">Spotify</span>
                 </h2>
               </div>
               <p className="max-w-sm text-cream/70">
-                Moments from our cacao circles, creative gatherings, and the people
-                who make each hosted experience their own.
+                The soundscapes behind Nature Loves Courage and Golden Frequency. Press play
+                and listen right here.
               </p>
             </div>
           </Reveal>
           <Reveal delay={100} className="mt-12">
-            <CraftGallery />
+            <SpotifySection />
           </Reveal>
         </div>
       </section>
