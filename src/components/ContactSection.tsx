@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CONTACT_EMAIL, WHATSAPP_LINK } from "@/data/hideas";
 import { SocialLinks } from "@/components/SocialLinks";
@@ -12,10 +12,26 @@ const TYPES = [
   "Press & podcast",
 ];
 
+const PRIVATE_TYPE = "Private / group ceremony";
+const SITTING_TYPES = ["Private", "Couples", "Small Group"];
+const LOCATIONS = ["Vancouver", "Kelowna", "Lake Country", "Vernon", "Other Central BC"];
+/** Links to this hash ("Book a private sitting") open the form with the private enquiry selected. */
+const BOOK_PRIVATE_HASH = "#book-private";
+
 export function ContactSection() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [type, setType] = useState(TYPES[0]);
+
+  useEffect(() => {
+    const pick = () => {
+      if (window.location.hash === BOOK_PRIVATE_HASH) setType(PRIVATE_TYPE);
+    };
+    pick();
+    window.addEventListener("hashchange", pick);
+    return () => window.removeEventListener("hashchange", pick);
+  }, []);
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
@@ -58,6 +74,7 @@ export function ContactSection() {
         </div>
       ) : (
         <form
+          id="book-private"
           onSubmit={async (e) => {
             e.preventDefault();
             const form = e.currentTarget;
@@ -73,7 +90,7 @@ export function ContactSection() {
               setSending(false);
             }
           }}
-          className="h-fit border-2 border-ink bg-cream p-6 text-ink shadow-[10px_10px_0_var(--magenta)] sm:p-8"
+          className="h-fit scroll-mt-28 border-2 border-ink bg-cream p-6 text-ink shadow-[10px_10px_0_var(--magenta)] sm:p-8"
         >
           <h3 className="font-display text-2xl uppercase">Private, group &amp; corporate</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink/70">
@@ -90,6 +107,8 @@ export function ContactSection() {
                 required
                 id="contact-type"
                 name="Enquiry type"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
                 className="mt-1 w-full border-2 border-ink bg-paper px-3 py-2 font-body outline-none focus:shadow-[4px_4px_0_var(--magenta)]"
               >
                 {TYPES.map((t) => (
@@ -97,6 +116,35 @@ export function ContactSection() {
                 ))}
               </select>
             </label>
+
+            {type === PRIVATE_TYPE ? (
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  { id: "sitting", label: "Type", options: SITTING_TYPES },
+                  { id: "location", label: "Location", options: LOCATIONS },
+                ].map((f) => (
+                  <label key={f.id} className="block">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/70">
+                      {f.label}
+                    </span>
+                    <select
+                      required
+                      id={`contact-${f.id}`}
+                      name={f.label}
+                      defaultValue=""
+                      className="mt-1 w-full border-2 border-ink bg-paper px-3 py-2 font-body outline-none focus:shadow-[4px_4px_0_var(--magenta)]"
+                    >
+                      <option value="" disabled>
+                        Choose one
+                      </option>
+                      {f.options.map((o) => (
+                        <option key={o}>{o}</option>
+                      ))}
+                    </select>
+                  </label>
+                ))}
+              </div>
+            ) : null}
 
             {[
               { id: "name", label: "Your name", type: "text", auto: "name" },
