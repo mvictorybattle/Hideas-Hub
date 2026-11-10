@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-import logo from "@/assets/h!logo.png";
+import { KaleidoscopeLogo } from "@/components/Kaleidoscope";
 
 const KEY = "hideas-intro-seen";
 const DURATION = 4600;
 
+/** Opening animation: the H! logo and its kaleidoscope bloom in, then the curtain lifts. */
 export function IntroBeam() {
   const [state, setState] = useState<"idle" | "playing">("idle");
 
@@ -40,53 +41,11 @@ export function IntroBeam() {
   if (state !== "playing" || typeof document === "undefined") return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[200] overflow-hidden bg-ink [animation:intro-curtain_0.7s_3.9s_ease-in_forwards]">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-ink [animation:intro-curtain_0.7s_3.9s_ease-in_forwards]">
       <div className="grain-overlay pointer-events-none absolute inset-0" />
 
-      {/* star field */}
-      {Array.from({ length: 26 }).map((_, i) => (
-        <span
-          key={i}
-          className="absolute h-[3px] w-[3px] rounded-full bg-cream opacity-0 [animation:intro-twinkle_2.6s_ease-in-out_infinite]"
-          style={{
-            left: `${(i * 37) % 100}%`,
-            top: `${(i * 61) % 100}%`,
-            animationDelay: `${(i % 9) * 0.18}s`,
-          }}
-        />
-      ))}
-
-      {/* beam + payload */}
-      <div className="absolute left-1/2 top-0 h-full w-[min(680px,86vw)] -translate-x-1/2">
-        <div
-          className="absolute left-1/2 top-[16%] h-[62%] w-full origin-top -translate-x-1/2 opacity-0 [animation:intro-beam_3.1s_0.85s_ease-out_forwards] [clip-path:polygon(43%_0,57%_0,100%_100%,0_100%)]"
-          style={{
-            background:
-              "linear-gradient(to bottom, color-mix(in oklab, var(--jade) 92%, white), color-mix(in oklab, var(--jade) 35%, transparent) 70%, transparent)",
-          }}
-        />
-
-        <div className="absolute left-1/2 top-[52%] w-full -translate-x-1/2 text-center opacity-0 [animation:intro-payload_1.1s_1.9s_cubic-bezier(0.2,1.3,0.4,1)_forwards]">
-          <p className="poster text-[15vw] leading-none text-cream sm:text-[7rem]">H!DEAS</p>
-          <p className="mt-2 font-script text-2xl text-marigold">socials + ceremony</p>
-          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.32em] text-jade">
-            beaming the circle into place
-          </p>
-        </div>
-      </div>
-
-      {/* the ship: the H! logo beams the circle in */}
-      <div className="absolute left-1/2 top-[4%] w-[min(190px,40vw)] -translate-x-1/2 [animation:intro-ship-in_1s_ease-out_both,intro-ship-hover_2s_1s_ease-in-out_2,intro-ship-out_0.9s_3.1s_ease-in_forwards]">
-        <img
-          src={logo}
-          alt=""
-          aria-hidden="true"
-          className="w-full rounded-full"
-          style={{
-            boxShadow:
-              "0 0 0 4px var(--cream), 0 0 40px color-mix(in oklab, var(--jade) 60%, transparent)",
-          }}
-        />
+      <div className="w-[min(560px,82vw)] [animation:intro-bloom_1.6s_cubic-bezier(0.22,1,0.36,1)_both]">
+        <KaleidoscopeLogo intro />
       </div>
 
       <button
