@@ -47,8 +47,8 @@ function petalRing(radius: number, petals: number, depth: number, offset: number
 export function discPaths(rings: number[], variant: KaleidoscopeVariant, colorShift: number) {
   const vivid = variant === "vivid";
   return rings.flatMap((ring) => {
-    const { hz } = CHAKRAS[ring];
-    const color = CHAKRAS[(ring + colorShift) % CHAKRAS.length].color;
+    const { hz } = CHAKRAS[ring]!;
+    const color = CHAKRAS[(ring + colorShift) % CHAKRAS.length]!.color;
     const radius = FIRST_RING_RADIUS + ring * RING_SPACING;
     const petals = petalCount(hz);
     const depth = petalDepth(hz);
