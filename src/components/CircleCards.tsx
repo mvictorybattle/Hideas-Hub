@@ -67,7 +67,8 @@ function CircleCard({ circle }: { circle: (typeof CIRCLES)[number] }) {
           alt=""
           width={960}
           height={1200}
-          loading="lazy"
+          // Not lazy: browsers skip lazy-loading a fully clipped image, so it would roll up empty.
+          decoding="async"
           className={`absolute inset-0 size-full object-cover transition-[clip-path] duration-[1400ms] ${EASE} motion-reduce:duration-500 ${
             revealed ? "[clip-path:inset(0_0_0_0)]" : "[clip-path:inset(100%_0_0_0)]"
           }`}
