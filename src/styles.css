@@ -53,6 +53,8 @@
   --font-serif: "Fraunces", Georgia, serif;
   --font-body: "Space Grotesk", system-ui, sans-serif;
   --font-mono: "Space Mono", ui-monospace, monospace;
+  /* "Talk Medicine" title: a free stand-in for Barbieri (Adobe Fonts). */
+  --font-talk: "League Gothic", "Arial Narrow", sans-serif;
 }
 
 :root {
@@ -297,32 +299,13 @@ section[id] {
 
 /* ---------- intro beam-in sequence ---------- */
 
-@keyframes intro-ship-in {
-  0% { transform: translateY(-220%) scale(0.6); opacity: 0; }
-  100% { transform: translateY(0) scale(1); opacity: 1; }
+@keyframes intro-bloom {
+  0% { opacity: 0; transform: scale(0.7); filter: blur(8px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
 }
-@keyframes intro-ship-hover {
-  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
-  50% { transform: translateY(-12px) rotate(1.5deg); }
-}
-@keyframes intro-ship-out {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { transform: translate(55vw, -180%) scale(0.4); opacity: 0; }
-}
-@keyframes intro-beam {
-  0% { opacity: 0; transform: scaleY(0); }
-  18% { opacity: 0.95; transform: scaleY(1); }
-  70% { opacity: 0.85; transform: scaleY(1); }
-  100% { opacity: 0; transform: scaleY(0); }
-}
-@keyframes intro-payload {
-  0% { opacity: 0; transform: translateY(-38%) scale(0.55); filter: blur(6px); }
-  60% { opacity: 1; filter: blur(0); }
-  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
-@keyframes intro-twinkle {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.9; }
+@keyframes intro-turn {
+  from { transform: rotate(-50deg); }
+  to { transform: rotate(0deg); }
 }
 @keyframes intro-curtain {
   0% { opacity: 1; }
