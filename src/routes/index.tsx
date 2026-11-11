@@ -438,7 +438,7 @@ function Home() {
 
       <Marquee
         tone="magenta"
-        words={["Meditation", "Breathwork", "Cacao ceremonies", "Silent disco"]}
+        words={["Meditation", "Breathwork", "Cacao ceremonies", "Headphones on"]}
       />
 
       {/* PODCAST */}
@@ -515,8 +515,8 @@ function Home() {
             <p className="poster mt-8 text-4xl leading-[0.95] text-cream sm:text-6xl">
               Celebrating the virtues of{" "}
               <span className="text-marigold">gratitude</span> and{" "}
-              <span className="text-magenta">intention setting</span> through hosted meditation, breathwork, and cacao ceremonies
-              in a silent-disco format.
+              <span className="text-magenta">intention setting</span> through curated social events and
+              small, private ceremonies across British Columbia.
             </p>
           </Reveal>
         </div>
