@@ -55,7 +55,7 @@ export function ContactSection() {
               </a>
             </li>
             <li className="font-mono text-sm text-cream/60">
-              Vancouver &amp; Central BC — Kelowna, Vernon and Penticton · replies within 48 hours
+              Vancouver &amp; Central BC — Kelowna, West Kelowna, Lake Country, Vernon and Penticton · replies within 48 hours
             </li>
           </ul>
           <div className="mt-6">
