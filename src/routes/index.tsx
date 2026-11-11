@@ -18,6 +18,7 @@ import { CONTACT_EMAIL } from "@/data/hideas";
 
 import { CircleCards } from "@/components/CircleCards";
 import { SpotifySection } from "@/components/SpotifySection";
+import { HostSpaceBanner } from "@/components/HostSpaceBanner";
 import heroBanner from "@/assets/banner-forest.webp";
 import heroBannerPhone from "@/assets/banner-forest-phone.webp";
 import goldenFrequencyWide from "@/assets/golden-frequency-wide.webp";
@@ -398,8 +399,7 @@ function Home() {
         </div>
       </section>
 
-
-
+      <HostSpaceBanner />
 
       {/* PRIVATE & COUPLES SITTINGS */}
       <section id="private" className="relative bg-jade px-5 py-20 text-cream sm:px-8 sm:py-28">
