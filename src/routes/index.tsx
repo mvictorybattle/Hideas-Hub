@@ -19,6 +19,7 @@ import { CONTACT_EMAIL } from "@/data/hideas";
 import { CircleCards } from "@/components/CircleCards";
 import { SpotifySection } from "@/components/SpotifySection";
 import { HostSpaceBanner } from "@/components/HostSpaceBanner";
+import { LOCAL_BUSINESS_JSON_LD, SITE_DESCRIPTION, SITE_NAME, SITE_URL, pageMeta } from "@/lib/seo";
 import heroBanner from "@/assets/banner-forest.webp";
 import heroBannerPhone from "@/assets/banner-forest-phone.webp";
 import goldenFrequencyWide from "@/assets/golden-frequency-wide.webp";
@@ -29,28 +30,13 @@ import talkMedicineBanner from "@/assets/talk-medicine-banner.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Hideas — Silent Disco Meditation, Breathwork & Cacao" },
-      {
-        name: "description",
-        content:
-          "Hideas hosts meditation, breathwork and cacao ceremonies in a silent-disco format in British Columbia. Ceremony bookings only — no physical products for sale.",
-      },
-      { property: "og:title", content: "Hideas — Silent Disco Ceremonies" },
-      {
-        property: "og:description",
-        content:
-          "Hosted meditation, breathwork and cacao ceremonies in a silent-disco format. Explore events, private sittings and the Hideas podcast.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Hideas — Silent Disco Ceremonies" },
-      {
-        name: "twitter:description",
-        content:
-          "Hosted meditation, breathwork and cacao ceremonies in a silent-disco format. Explore events, private sittings and the Hideas podcast.",
-      },
-    ],
+    meta: pageMeta({
+      title: "Hideas Socials and Ceremony | Vancouver, Kelowna & Central BC",
+      shareTitle: SITE_NAME,
+      description: SITE_DESCRIPTION,
+    }),
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    scripts: [{ type: "application/ld+json", children: LOCAL_BUSINESS_JSON_LD }],
   }),
   component: Home,
 });
@@ -341,8 +327,8 @@ function Home() {
                 </h2>
               </div>
               <p className="max-w-sm text-ink/70">
-                Small circles, held across British Columbia — Kelowna, Vernon, Kamloops,
-                Vancouver and Lake Country. Seats are limited on purpose.
+                Small circles, held across British Columbia — Vancouver, Kelowna, West Kelowna,
+                Lake Country, Vernon and Kamloops. Seats are limited on purpose.
               </p>
             </div>
             <div className="mt-8 border-t-2 border-cream/15 pt-6">
