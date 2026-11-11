@@ -83,7 +83,7 @@ function CheckoutPage() {
           ← Keep browsing
         </Link>
         <h1 className="poster mt-4 text-5xl leading-none sm:text-7xl">Ceremony bookings</h1>
-        <p className="mt-5 max-w-2xl text-cream/80">Hideas only hosts meditation, breathwork, and cacao ceremonies in a silent-disco format. There are no physical products or shipping charges.</p>
+        <p className="mt-5 max-w-2xl text-cream/80">Reservations here are for Hideas ceremonies and events only. There are no physical products or shipping charges.</p>
 
         {items.length === 0 ? (
           <p className="mt-10 font-script text-3xl text-marigold">
