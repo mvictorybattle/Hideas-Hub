@@ -4,24 +4,19 @@ import { useState } from "react";
 import { money, useCart } from "@/lib/cart";
 import { CONTACT_EMAIL, POLICY, WHATSAPP_LINK } from "@/data/hideas";
 import { sendForm } from "@/lib/send-form";
+import { pageMeta } from "@/lib/seo";
 
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Ceremony Reservations — Hideas" },
-      {
-        name: "description",
-        content:
-          "Review your reservations for hosted silent-disco meditation, breathwork and cacao ceremonies.",
-      },
-      { property: "og:title", content: "Ceremony Reservations — Hideas" },
-      {
-        property: "og:description",
-        content: "Reserve your place at a hosted Hideas silent-disco ceremony. No physical products are sold.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      ...pageMeta({
+        title: "Your Reservations | Hideas Socials and Ceremony",
+        description: "Review and send your Hideas ceremony and event reservation requests.",
+        path: "/checkout",
+      }),
+      // A personal basket page, so it stays out of search results.
+      { name: "robots", content: "noindex, follow" },
     ],
   }),
   component: CheckoutPage,
