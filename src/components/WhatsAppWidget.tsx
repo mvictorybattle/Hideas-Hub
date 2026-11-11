@@ -5,7 +5,7 @@ import { WHATSAPP_NUMBER } from "@/data/hideas";
 const QUICK = [
   "I'd like to save a spot at the next ceremony.",
   "When is the next Token of Gratitude social?",
-  "I have a question about silent-disco meditation, breathwork, or cacao ceremonies.",
+  "I have a question about Hideas ceremonies and events.",
 ];
 
 export function WhatsAppWidget() {
