@@ -94,8 +94,8 @@ export function ContactSection() {
         >
           <h3 className="font-display text-2xl uppercase">Private, group &amp; corporate</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink/70">
-            Silent-disco meditation, breathwork, and cacao ceremonies for private groups,
-            team days, and retreats. We travel across BC and shape the circle with you.
+            Private ceremonies and curated gatherings for small groups, team days and
+            retreats. We travel across BC and shape the circle with you.
           </p>
 
           <div className="mt-5 space-y-3">
