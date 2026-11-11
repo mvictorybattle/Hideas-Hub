@@ -140,7 +140,7 @@ export const EPISODES: Record<PodcastCategory, Episode[]> = {
       n: "01",
       title: "Nature Loves Courage — Ceremony Banner",
       blurb:
-        "A look inside a hosted Nature Loves Courage silent-disco ceremony: meditation, breathwork, cacao, and shared intention.",
+        "A look inside a hosted Nature Loves Courage ceremony: meditation, breathwork, cacao, and shared intention.",
       kind: "video",
       src: `${CDN}/2026/03/NLCMarchBanner2.mp4`,
       poster: epNlcBanner,
@@ -210,7 +210,7 @@ export const EVENTS: CeremonyEvent[] = [
   {
     id: "nlc-kelowna",
     series: "Nature Loves Courage",
-    title: "Nature Loves Courage — Silent Disco Meditation & Breathwork",
+    title: "Nature Loves Courage — Meditation & Breathwork",
     date: "2026-06-29",
     time: "6:00 PM – 9:30 PM",
     city: "Kelowna, BC",
@@ -238,7 +238,7 @@ export const EVENTS: CeremonyEvent[] = [
   {
     id: "nlc-vancouver",
     series: "Nature Loves Courage",
-    title: "Nature Loves Courage — Silent Disco Meditation & Breathwork",
+    title: "Nature Loves Courage — Meditation & Breathwork",
     date: "2026-07-27",
     time: "6:00 PM – 9:30 PM",
     city: "Vancouver, BC",
@@ -284,7 +284,7 @@ export const FACILITATORS: Facilitator[] = [
     bio: [
       "Victory has spent more than a decade building experiences where the audience is inside the moment rather than watching it. He joined the event production platform Artery in 2018, hosting intimate gatherings out of his Toronto loft studio, and was later chosen as their Event Ambassador.",
       "Before that he designed corporate team-building through The Field Trip Program at Pursuit OCR — stripping away titles and seniority — ran Camp Pursuit for kids across the GTA, co-hosted live charity broadcasts for the Boobie Ball, and built the Dance On Cancer's Grave Relay For Life campaign in memory of his friend Danielle.",
-      "Hideas has since relocated from Toronto to British Columbia, where Victory now holds Nature Loves Courage silent-disco meditation and breathwork ceremonies and Token of Gratitude cacao circles in Vancouver and across Central BC, including Kelowna, Vernon and Penticton.",
+      "Hideas has since relocated from Toronto to British Columbia, where Victory now holds Nature Loves Courage meditation and breathwork ceremonies and Token of Gratitude cacao circles in Vancouver and across Central BC, including Kelowna, Vernon and Penticton.",
     ],
     tags: ["Ceremony holder", "Live events", "Broadcast & A/V", "Youth programming"],
     links: [{ label: "victorybattlealive.com", href: "https://victorybattlealive.com/events/" }],
