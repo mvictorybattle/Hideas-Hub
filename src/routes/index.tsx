@@ -530,14 +530,13 @@ function Home() {
               <div>
                 <SectionLabel n="07">Who Holds The Circle</SectionLabel>
                 <h2 className="poster mt-5 text-6xl text-cream sm:text-8xl">
-                  The <span className="text-marigold">Facilitators</span>
+                  The <span className="text-marigold">Facilitator</span>
                 </h2>
               </div>
               <p className="max-w-sm text-cream/70">
-                 Victory brings years of experience holding live rooms; Salar brings visual
-                 storytelling and a long personal relationship with plant-medicine culture.
-                 Together they balance structure with imagination, helping people feel held
-                 without making the experience feel clinical.
+                 Victory brings more than a decade of experience holding live rooms, balancing
+                 structure with imagination so people feel held without the experience ever
+                 feeling clinical.
               </p>
             </div>
           </Reveal>
