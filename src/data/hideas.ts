@@ -9,7 +9,6 @@ import epNlcBanner from "@/assets/ep-nlc-banner.webp";
 import epTogJoy from "@/assets/ep-tog-joy.webp";
 import epTogTip from "@/assets/ep-tog-tip.webp";
 import teamVictory from "@/assets/team-victory.webp";
-import teamSalar from "@/assets/team-salar.webp";
 import gal09 from "@/assets/gal-09.webp";
 import gal10 from "@/assets/gal-10.webp";
 import gal11 from "@/assets/gal-11.webp";
@@ -288,21 +287,6 @@ export const FACILITATORS: Facilitator[] = [
     ],
     tags: ["Ceremony holder", "Live events", "Broadcast & A/V", "Youth programming"],
     links: [{ label: "victorybattlealive.com", href: "https://victorybattlealive.com/events/" }],
-  },
-  {
-    name: "Salar Salahi",
-    role: "Creative Director & Visual Artist",
-    img: teamSalar,
-    bio: [
-      "Salar is a visual artist with over 12 years of experience — film, caricature, photography and collage all live under the same hand, and that is where Hideas visual language comes from.",
-      "In 2018 he ran a podcast about plant medicine for 18 episodes, and since then he has been in the discovery of different medicines to heal his own traumas and to help others overcome theirs.",
-      "He is currently a student of Human Garage, learning to help himself and the community release tension and trauma held in the body.",
-    ],
-    tags: ["Visual artist", "Film & collage", "Live caricature", "Human Garage student"],
-    links: [
-      { label: "salarsalahi.com", href: "https://salarsalahi.com/film" },
-      { label: "smileamileart.com", href: "https://smileamileart.com/" },
-    ],
   },
 ];
 
