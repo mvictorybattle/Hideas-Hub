@@ -10,7 +10,7 @@ import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 import { CeremonyGuide, GuideButton } from "@/components/CeremonyGuide";
 import { FaqSection } from "@/components/FaqSection";
 import { ContactSection } from "@/components/ContactSection";
-import { Newsletter } from "@/components/Newsletter";
+import { MailingList } from "@/components/MailingList";
 import { Testimonials } from "@/components/Testimonials";
 import { SocialLinks } from "@/components/SocialLinks";
 import { CONTACT_EMAIL } from "@/data/hideas";
@@ -210,13 +210,13 @@ function Home() {
                 </span>
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/80">
-                Hideas creates intimate gatherings for people who want more from their time.
-                Alongside our curated social events, we host small, private ceremonies centred
-                on the safe and thoughtful use of plant medicine. We don&apos;t sell plant
-                medicine. We design the experience, and we work only with experienced
-                practitioners who operate properly and within the law. Our guests often describe
-                leaving lighter and clearer, with a renewed sense of purpose and a quiet release
-                of patterns that no longer serve them.
+                Hideas was born from a deep love for plant medicine and a simple belief: everyone
+                deserves a safe, caring place to explore it. Founded by Victory Battle, Hideas
+                creates ceremonies and gatherings where every guest is genuinely looked after. Each
+                ceremony begins with gratitude, that warm feeling you have for someone who changed
+                your life for the better. You bring that with you, and leave the rest at the door.
+                Titles, roles and identities don&apos;t matter here. What matters is the journey,
+                and what you discover about yourself along the way.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
@@ -285,7 +285,7 @@ function Home() {
           <div className="mt-14">
             <Reveal delay={120}>
               <p className="mx-auto max-w-3xl text-xl leading-relaxed text-ink/80">
-                Set and setting are everything. Before the journey begins, every guest is
+                The importance of set and setting cannot be overstated. Before the journey begins, every guest is
                 settled in comfortably and knows exactly what to expect. We walk you through
                 each step, from finding a headphone volume that feels just right for your
                 intention to knowing who is there to support you. Nothing is rushed, and
@@ -400,7 +400,7 @@ function Home() {
               </h2>
               <p className="mt-7 max-w-lg text-xl leading-relaxed text-cream/85">
                 We bring the ceremony to you. Whether it&apos;s just for you, for you and your
-                partner, or for a small group you trust, every private ceremony is shaped around
+                partner, or for a small group of close friends, every private ceremony is shaped around
                 your intention and your space. We currently offer private ceremonies in Vancouver
                 and throughout Central BC.
               </p>
@@ -438,7 +438,14 @@ function Home() {
 
       <Marquee
         tone="magenta"
-        words={["Meditation", "Breathwork", "Cacao ceremonies", "Headphones on"]}
+        words={[
+          "Socials and Ceremony",
+          "Nature Loves Courage",
+          "Golden Frequency",
+          "Token of Gratitude",
+          "Private Ceremony",
+          "Hideas.ca",
+        ]}
       />
 
       {/* PODCAST */}
@@ -513,10 +520,8 @@ function Home() {
           <Reveal>
             <SectionLabel n="06">About Hideas</SectionLabel>
             <p className="poster mt-8 text-4xl leading-[0.95] text-cream sm:text-6xl">
-              Celebrating the virtues of{" "}
-              <span className="text-marigold">gratitude</span> and{" "}
-              <span className="text-magenta">intention setting</span> through curated social events and
-              small, private ceremonies across British Columbia.
+              Celebrating the virtues of <span className="text-marigold">gratitude</span> through
+              curated social events and small private ceremonies across British Columbia.
             </p>
           </Reveal>
         </div>
@@ -534,7 +539,7 @@ function Home() {
                 </h2>
               </div>
               <p className="max-w-sm text-cream/70">
-                 Victory brings more than a decade of experience holding live rooms, balancing
+                 Victory brings over 30 years of experience holding live rooms, balancing
                  structure with imagination so people feel held without the experience ever
                  feeling clinical.
               </p>
@@ -581,7 +586,16 @@ function Home() {
         </div>
       </section>
 
-      {/* CONNECT — contact, socials & newsletter */}
+      {/* MAILING LIST */}
+      <section id="mailing-list" className="relative scroll-mt-24 bg-ink px-5 pt-20 sm:px-8 sm:pt-28">
+        <div className="mx-auto max-w-7xl">
+          <Reveal>
+            <MailingList />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CONNECT — contact & socials */}
       <section id="connect" className="relative bg-ink px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto max-w-7xl">
           <Reveal>
@@ -593,8 +607,7 @@ function Home() {
                 </h2>
               </div>
               <p className="max-w-sm text-cream/70">
-                Message us, follow along, or join the mailing list if you&rsquo;re not ready
-                to sit yet.
+                Message us or follow along. We&rsquo;d love to hear from you.
               </p>
             </div>
           </Reveal>
@@ -602,15 +615,19 @@ function Home() {
           <Reveal delay={100} className="mt-12">
             <ContactSection />
           </Reveal>
-          <Reveal delay={140} className="mt-12">
-            <Newsletter />
-          </Reveal>
         </div>
       </section>
 
       <Marquee
         tone="jade"
-        words={["Socials + Ceremonies", "Nature Loves Courage", "Meditation + Breathwork + Cacao"]}
+        words={[
+          "Socials and Ceremony",
+          "Nature Loves Courage",
+          "Golden Frequency",
+          "Token of Gratitude",
+          "Private Ceremony",
+          "Hideas.ca",
+        ]}
       />
 
 

@@ -13,7 +13,7 @@ export function HostSpaceBanner() {
       <div className="mx-auto flex max-w-7xl flex-col gap-6 border-2 border-marigold/60 px-6 py-7 sm:px-10 md:flex-row md:items-center md:justify-between">
         <div className="max-w-3xl">
           <h2 id="host-space-title" className="poster text-3xl text-marigold sm:text-4xl">
-            Have a Beautiful Space?
+            Do You Have a Beautiful Space?
           </h2>
           <p className="mt-3 leading-relaxed text-cream/80">
             We&apos;re always looking for special places to gather. Whether it&apos;s a few acres of

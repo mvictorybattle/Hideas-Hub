@@ -8,14 +8,14 @@ import gfReveal from "@/assets/circle-gf-reveal.webp";
 const CIRCLES = [
   {
     name: "Nature Loves Courage",
-    body: "A traditional ceremony, held outdoors or in a carefully chosen space. Opened with smudging and carried by a soundscape of beautiful music, it's an invitation to slow down and let the experience unfold naturally.",
+    body: "Nature Loves Courage takes its name from a Terence McKenna lecture. His idea was that nature rewards those brave enough to take a chance, and that stepping into the unknown often turns out to feel surprisingly comfortable. This is a traditional plant medicine ceremony, held somewhere chosen for its beauty: a beautiful home, an open meadow, or the shore of a lake. With headphones on, each guest settles in and journeys inward. Afterwards, we journal, share our experiences, and discover the connections between us.",
     href: "#nature-loves-courage",
     base: nlcBase,
     reveal: nlcReveal,
   },
   {
     name: "Golden Frequency",
-    body: "A modern, sound-led ceremony. Each session is built around chosen frequencies that work hand in hand with the experience, and many guests describe vivid geometric patterns and a deep sense of focus.",
+    body: "Golden Frequency is an investment in clarity. Designed for those who value their time, each ceremony unites precisely chosen binaural beats and frequencies with plant medicine in an intimate, expertly held setting. Every experience is unique, yet guests often describe vivid sacred geometry, ancient symbols and patterns of mathematics, along with moments of insight that keep unfolding long after the ceremony ends. Discreet and unhurried, Golden Frequency is available for a small group of up to ten, as a semi-private session, or as a fully private ceremony.",
     href: "#golden-frequency",
     base: gfBase,
     reveal: gfReveal,
@@ -47,7 +47,7 @@ function CircleCard({ circle }: { circle: (typeof CIRCLES)[number] }) {
   };
 
   return (
-    <article className="relative flex aspect-[4/5] w-full min-w-0 flex-col justify-end border-2 border-cream/25 bg-ink-soft">
+    <article className="relative flex aspect-[4/5] w-full min-w-0 flex-col justify-end border-2 border-cream/25 bg-ink-soft md:aspect-auto md:min-h-[44rem] lg:min-h-[48rem]">
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <img
           src={circle.base}

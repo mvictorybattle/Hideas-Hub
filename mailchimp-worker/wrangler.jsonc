@@ -1,0 +1,14 @@
+{
+  // Mailing-list signup for hideas.ca. The MAILCHIMP_API_KEY secret is set in the
+  // Cloudflare dashboard (Worker → Settings → Variables and Secrets), never in this file.
+  "name": "hideas-mailchimp",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "keep_vars": true,
+  "vars": {
+    "MAILCHIMP_AUDIENCE_ID": "467048cee3",
+    "ALLOWED_ORIGINS": "https://hideas.ca,https://www.hideas.ca,http://localhost:4174"
+  }
+}

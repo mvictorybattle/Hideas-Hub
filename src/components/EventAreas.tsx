@@ -4,6 +4,7 @@ import natureLovesCourageImg from "@/assets/event-nature-loves-courage.webp";
 import goldenFrequencyImg from "@/assets/event-golden-frequency.webp";
 import { todayInVancouver } from "@/data/hideas";
 import { FIELD, Field, FormDialog } from "@/components/FormDialog";
+import { CEREMONY_PRICE, ETransferDialog } from "@/components/ETransferDialog";
 
 type CeremonyDate = { date: string; day: string; time: string };
 
@@ -49,6 +50,7 @@ export function EventAreas() {
   const [today, setToday] = useState("");
   useEffect(() => setToday(todayInVancouver()), []);
   const [picked, setPicked] = useState<{ name: string; place: string; slot: CeremonyDate } | null>(null);
+  const [paying, setPaying] = useState<{ name: string; dates: CeremonyDate[] } | null>(null);
 
   return (
     <div className="space-y-10">
@@ -76,8 +78,13 @@ export function EventAreas() {
                   {dates.map((slot) => (
                     <li key={slot.date + slot.time} className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-4">
                       <div>
-                        <p className="font-display text-lg uppercase leading-tight">
-                          {slot.day} · {slot.time}
+                        <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-lg uppercase leading-tight">
+                          <span>
+                            {slot.day} · {slot.time}
+                          </span>
+                          <span className="border-2 border-ink bg-marigold px-2 py-0.5 text-base leading-none">
+                            ${CEREMONY_PRICE}
+                          </span>
                         </p>
                         <p className="mt-1 text-sm text-ink/65">Exact location shared once you reserve your spot.</p>
                       </div>
@@ -91,6 +98,20 @@ export function EventAreas() {
                     </li>
                   ))}
                 </ul>
+              ) : null}
+              {dates.length ? (
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-2 border-dashed border-ink/30 px-4 py-3">
+                  <p className="text-sm leading-relaxed text-ink/75">
+                    <span className="font-bold text-ink">${CEREMONY_PRICE} per guest,</span> paid by Interac e-Transfer.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setPaying({ name: area.name, dates })}
+                    className="border-2 border-ink bg-cream px-4 py-2 font-display text-sm uppercase text-ink shadow-[4px_4px_0_var(--jade)] transition-transform hover:-translate-y-0.5"
+                  >
+                    Pay by e-Transfer
+                  </button>
+                </div>
               ) : (
                 <p className="mt-6 border-y border-ink/15 py-4 text-base text-ink/75">
                   New dates are coming soon. Message us to hear about the next one first.
@@ -100,6 +121,14 @@ export function EventAreas() {
           </article>
         );
       })}
+
+      <ETransferDialog
+        key={paying?.name ?? "closed"}
+        open={paying !== null}
+        onOpenChange={(open) => !open && setPaying(null)}
+        ceremony={paying?.name ?? ""}
+        slots={paying?.dates ?? []}
+      />
 
       <FormDialog
         open={picked !== null}

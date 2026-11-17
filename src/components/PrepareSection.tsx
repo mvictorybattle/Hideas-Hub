@@ -3,7 +3,7 @@ import { WHATSAPP_LINK } from "@/data/hideas";
 
 export function PrepareSection() {
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
       {PREPARE_STEPS.map((s, i) => (
         <article
           key={s.k}
@@ -14,7 +14,7 @@ export function PrepareSection() {
             {s.k}
           </span>
           <h3 className="mt-4 font-display text-2xl uppercase leading-tight">{s.title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-ink/75">{s.body}</p>
+          <p className="mt-3 text-[15px] leading-relaxed text-ink/80">{s.body}</p>
         </article>
       ))}
     </div>

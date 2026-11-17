@@ -8,7 +8,7 @@ import epDearDad from "@/assets/ep-dear-dad.webp";
 import epNlcBanner from "@/assets/ep-nlc-banner.webp";
 import epTogJoy from "@/assets/ep-tog-joy.webp";
 import epTogTip from "@/assets/ep-tog-tip.webp";
-import teamVictory from "@/assets/team-victory.webp";
+import teamVictory from "@/assets/team-victory.jpg";
 import gal09 from "@/assets/gal-09.webp";
 import gal10 from "@/assets/gal-10.webp";
 import gal11 from "@/assets/gal-11.webp";
@@ -281,9 +281,9 @@ export const FACILITATORS: Facilitator[] = [
     role: "Founder & Ceremony Facilitator",
     img: teamVictory,
     bio: [
-      "Victory has spent more than a decade building experiences where the audience is inside the moment rather than watching it. He joined the event production platform Artery in 2018, hosting intimate gatherings out of his Toronto loft studio, and was later chosen as their Event Ambassador.",
-      "Before that he designed corporate team-building through The Field Trip Program at Pursuit OCR — stripping away titles and seniority — ran Camp Pursuit for kids across the GTA, co-hosted live charity broadcasts for the Boobie Ball, and built the Dance On Cancer's Grave Relay For Life campaign in memory of his friend Danielle.",
-      "Hideas has since relocated from Toronto to British Columbia, where Victory now holds Nature Loves Courage meditation and breathwork ceremonies and Token of Gratitude cacao circles in Vancouver and across Central BC, including Kelowna, Vernon and Penticton.",
+      "I've walked through a lot of challenging times in my life. For years, I leaned on ways of coping that weren't really serving me. Plant medicine changed that. It helped me step back from old ways of thinking, see myself with fresh eyes, and build new habits that actually carried me forward. Out of that came a deep sense of gratitude, and gratitude is where every Hideas ceremony begins.",
+      "For 30 years, I've produced events in health and fitness. What I loved most was watching people change for the better, leaving a class or event inspired to make real changes in their lives. That same intention is what I bring to plant medicine. The tools I've built over all those years, from creating a space to reading a room and holding people with care, now go into every ceremony.",
+      "When you come to a ceremony, I want you to feel like you're meeting an old friend. I'm in your corner from the first message to long after we say goodbye. I've been doing this a long time, and I built Hideas with the best of intentions: to give you a sincere, carefully held experience where you can fully let go.",
     ],
     tags: ["Ceremony holder", "Live events", "Broadcast & A/V", "Youth programming"],
     links: [{ label: "victorybattlealive.com", href: "https://victorybattlealive.com/events/" }],
@@ -307,6 +307,10 @@ export const SOCIALS = [
 
 export const CONTACT_EMAIL = "events@hideas.ca";
 
+/** Mailing-list signups go to this Cloudflare Worker (mailchimp-worker/), which holds the
+ * Mailchimp API key as a secret and adds each person to the Hideas audience. */
+export const MAILING_LIST_ENDPOINT = "https://hideas-mailchimp.m-victorybattle.workers.dev";
+
 /** Web3Forms access key. Submissions are delivered to the inbox the key was created for
  * (events@hideas.ca). Access keys are designed to be public. */
 export const WEB3FORMS_KEY = "507c60b7-5e4a-447e-80c0-430befdf66b1";
@@ -317,32 +321,32 @@ export const PREPARE_STEPS: { k: string; title: string; body: string }[] = [
   {
     k: "72h before",
     title: "Lighten the load",
-    body: "Ease off alcohol, cannabis, recreational substances and heavy or processed food. Sleep is the most useful thing you can bring.",
+    body: "In the days before your ceremony, give your body a little breathing room. Take a break from alcohol, cannabis and other recreational substances, and go easy on heavy, processed foods. Most of all, get some good rest. A well-rested you is the best thing you can bring.",
   },
   {
     k: "24h before",
     title: "Eat simply",
-    body: "Plant-forward, low sugar, no red meat and no caffeine on the day. Drink water. If you take prescribed medication, keep taking it and tell us in your intake.",
+    body: "In the 24 hours before your ceremony, keep things light and easy on your stomach. Skip heavy meats, and take a little break from sugar, sugary drinks and caffeine. Simple, gentle meals are perfect. If you take prescribed medication, keep taking it as usual, and be sure to tell us about it on your intake form so we can talk it through with you beforehand.",
   },
   {
     k: "The day of",
     title: "Arrive unhurried",
-    body: "Come fasted 3–4 hours before the circle unless we've told you otherwise. Plan to arrive about 20 minutes early so you can settle in before we begin. Afterwards, give yourself another 20 to 30 minutes to rest and gather yourself before heading home.",
+    body: "Plan to arrive about 20 minutes early so you can settle in before we begin. Afterwards, give yourself another 20 to 30 minutes to rest and gather yourself before heading home.",
   },
   {
     k: "Bring",
     title: "What to pack",
-    body: "Comfortable layers, a blanket or shawl, a journal and pen, a water bottle, and one small object for the altar. We supply cushions, tea, cacao and everything for the craft table.",
+    body: "Bring comfortable layers of clothing and a cozy blanket or shawl to wrap up in. Pack a journal and pen for the insights that come afterwards, and a small sentimental trinket to help keep you grounded.",
   },
   {
     k: "In the room",
-    title: "What happens",
-    body: "Opening gratitude round, guided meditation and breathwork, cacao, and music through individual headphones, followed by sharing and a written intention.",
+    title: "In Ceremony",
+    body: "We begin with a moment of gratitude. Then, with headphones on, you'll settle into music chosen for the journey. A gentle, guided breathing rhythm keeps you calm and connected from beginning to end.",
   },
   {
     k: "After",
     title: "Integration",
-    body: "No driving for the rest of the day — arrange a ride. Sleep, walk, hydrate, write. We send an integration note within 48 hours and host a free online integration call the following week, plus the group chat stays open.",
+    body: "Integration is where your journey starts to take root. Back in the circle, guests share, listen, and gently help one another draw out the meaning of their experiences, never forced. It's also a lovely time to write down your notes while everything is still fresh. If you'd like to keep the conversation going, you're welcome to join our WhatsApp group chat afterwards. Please give yourself time to recover: arrange a ride home, and wait until the next day before driving.",
   },
 ];
 
