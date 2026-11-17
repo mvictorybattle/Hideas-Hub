@@ -31,6 +31,7 @@ export function FormDialog({
   subject,
   submitLabel,
   thanks,
+  footer,
   children,
 }: {
   open: boolean;
@@ -40,6 +41,8 @@ export function FormDialog({
   subject: string;
   submitLabel: string;
   thanks: string;
+  /** Optional content shown at the bottom of the pop-up, below the form or thank-you message. */
+  footer?: ReactNode;
   children: ReactNode;
 }) {
   const [sent, setSent] = useState(false);
@@ -97,6 +100,7 @@ export function FormDialog({
             </form>
           </>
         )}
+        {footer}
       </DialogContent>
     </Dialog>
   );
