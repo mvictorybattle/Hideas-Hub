@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { KaleidoscopeLogo } from "@/components/Kaleidoscope";
 
 const KEY = "hideas-intro-seen";
-const DURATION = 4600;
+const DURATION = 2300;
 
 /** Opening animation: the H! logo and its kaleidoscope bloom in, then the curtain lifts. */
 export function IntroBeam() {
@@ -41,10 +41,10 @@ export function IntroBeam() {
   if (state !== "playing" || typeof document === "undefined") return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-ink [animation:intro-curtain_0.7s_3.9s_ease-in_forwards]">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-ink [animation:intro-curtain_0.35s_1.95s_ease-in_forwards]">
       <div className="grain-overlay pointer-events-none absolute inset-0" />
 
-      <div className="w-[min(560px,82vw)] [animation:intro-bloom_1.6s_cubic-bezier(0.22,1,0.36,1)_both]">
+      <div className="w-[min(560px,82vw)] [animation:intro-bloom_0.8s_cubic-bezier(0.22,1,0.36,1)_both]">
         <KaleidoscopeLogo intro />
       </div>
 
