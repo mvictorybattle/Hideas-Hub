@@ -34,7 +34,7 @@ export function Kaleidoscope({ variant = "calm" }: { variant?: KaleidoscopeVaria
 export function KaleidoscopeLogo({ intro = false }: { intro?: boolean }) {
   return (
     <div className="relative mx-auto aspect-square w-full">
-      <div className={`absolute inset-0 ${intro ? "[animation:intro-turn_4.6s_ease-out_both]" : ""}`}>
+      <div className={`absolute inset-0 ${intro ? "[animation:intro-turn_2.3s_ease-out_both]" : ""}`}>
         <Kaleidoscope />
       </div>
       <img
