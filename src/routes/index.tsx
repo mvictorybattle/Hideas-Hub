@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { PodcastSection } from "@/components/PodcastSection";
 import { IntroBeam } from "@/components/IntroBeam";
-import { CartButton } from "@/components/CartDrawer";
+import { MemberButton } from "@/components/MemberAuth";
 import { EventsSection } from "@/components/EventsSection";
 import { TeamSection } from "@/components/TeamSection";
 import { WhatsAppWidget } from "@/components/WhatsAppWidget";
@@ -153,7 +153,7 @@ function Home() {
             </span>
           </a>
           <div className="order-2 flex items-center gap-3 md:order-3">
-          <CartButton />
+          <MemberButton />
           <a
             href="#calendar"
             className="border-2 border-ink bg-marigold px-4 py-2 font-display text-sm uppercase text-ink shadow-[4px_4px_0_var(--magenta)] transition-transform hover:-translate-y-0.5 md:order-3"
