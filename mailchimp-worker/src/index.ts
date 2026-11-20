@@ -21,6 +21,8 @@ type Signup = {
   interests?: unknown;
   location?: unknown;
   consent?: unknown;
+  /** True when the signup comes from the members-area sign-up form. */
+  member?: unknown;
   /** Hidden field real visitors never fill in; bots usually do. */
   website?: unknown;
 };
@@ -114,7 +116,7 @@ export default {
     }
 
     const tags = [
-      "Website signup",
+      data.member === true ? "Member" : "Website signup",
       ...interests.map((i) => `Interest: ${i}`),
       ...(location ? [`Location: ${location}`] : []),
     ].map((name) => ({ name, status: "active" }));
