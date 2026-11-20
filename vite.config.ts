@@ -25,7 +25,8 @@ export default defineConfig(
           // List the home page explicitly and render the SPA shell from a distinct
           // path. Prerendered pages are deduplicated by path, so with a "/" base
           // (custom domain) a shell at "/" would replace index.html.
-          pages: [{ path: "/" }],
+          // The members and admin pages are listed so they exist as real pages, not only as 404 fallbacks.
+          pages: [{ path: "/" }, { path: "/members" }, { path: "/admin" }],
           prerender: { enabled: true, crawlLinks: true, failOnError: true },
           spa: { enabled: true, maskPath: "/?spa-shell" },
         },
