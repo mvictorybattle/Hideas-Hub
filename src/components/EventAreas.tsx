@@ -23,8 +23,7 @@ const AREAS: {
     img: natureLovesCourageImg,
     alt: "Guests in glowing headphones sitting in a circle on a forested hillside at sunset",
     dates: [
-      { date: "2026-11-22", day: "Sunday, November 22, 2026", time: "1:00 PM" },
-      { date: "2026-11-29", day: "Sunday, November 29, 2026", time: "6:00 PM" },
+      { date: "2026-11-29", day: "Sunday, November 29, 2026", time: "4:00 PM" },
     ],
   },
   {
@@ -34,7 +33,6 @@ const AREAS: {
     img: goldenFrequencyImg,
     alt: "Golden line drawing of a meditating figure with chakra symbols and sound waves",
     dates: [
-      { date: "2026-11-22", day: "Sunday, November 22, 2026", time: "6:00 PM" },
       { date: "2026-11-29", day: "Sunday, November 29, 2026", time: "1:00 PM" },
     ],
   },
